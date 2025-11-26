@@ -36,9 +36,11 @@ const Head = () => {
   }, [searchQuery]);
 
   const getSearchSuggestions = async () => {
+    console.log("getSearchSuggestions called for:", searchQuery);
     if (!searchQuery) return;
+    console.log("Hitting API:", `${YOUTUBE_SUGGESTION_API}?q=${searchQuery}`);
 
-    const data = await fetch(YOUTUBE_SUGGESTION_API + searchQuery);
+    const data = await fetch(`${YOUTUBE_SUGGESTION_API}?q=${searchQuery}`);
 
     const json = await data.json();
     setSuggestions(json[1]);
@@ -56,6 +58,8 @@ const Head = () => {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
+    console.log("Typing:", e.target.value);
+
     setSuggestionsVisible(true);
   };
 
