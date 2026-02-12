@@ -16,7 +16,7 @@ const SearchResults = () => {
       const res = await fetch(YOUTUBE_SEARCH_API(query));
       const data = await res.json();
 
-      const videosWithId = data.items
+      const videosWithId = data
         .filter((item) => item.id.kind === "youtube#video")
         .map((item) => ({
           ...item,

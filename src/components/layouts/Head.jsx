@@ -23,8 +23,10 @@ const Head = () => {
     // make an api call after over key press but
     // if the difference between two key press is less than 200ms then decline api call.
     const timer = setTimeout(() => {
-      if (searchCache[searchQuery]) {
-        setSuggestions(searchCache[searchQuery]);
+      const cached = searchCache[searchQuery];
+
+      if (cached && Array.isArray(cached)) {
+        setSuggestions(cached);
       } else {
         getSearchSuggestions();
       }
@@ -36,20 +38,18 @@ const Head = () => {
   }, [searchQuery]);
 
   const getSearchSuggestions = async () => {
-    console.log("getSearchSuggestions called for:", searchQuery);
     if (!searchQuery) return;
-    console.log("Hitting API:", `${YOUTUBE_SUGGESTION_API}?q=${searchQuery}`);
 
     const data = await fetch(`${YOUTUBE_SUGGESTION_API}?q=${searchQuery}`);
 
     const json = await data.json();
-    setSuggestions(json[1]);
 
-    dispatch(
-      cacheResults({
-        [searchQuery]: json[1],
-      })
-    );
+    const suggestionsArray = Array.isArray(json) ? json : [];
+    setSuggestions(suggestionsArray);
+    setSuggestionsVisible(true);
+    console.log("Fetched Suggestions: ", suggestionsArray);
+
+    dispatch(cacheResults({ [searchQuery]: suggestionsArray }));
   };
 
   const toggleMenuHandler = () => {
@@ -58,14 +58,16 @@ const Head = () => {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
-    console.log("Typing:", e.target.value);
 
     setSuggestionsVisible(true);
   };
 
   useEffect(() => {
     const handleClick = (e) => {
-      if (!e.target.closest(".suggest-box")) {
+      if (
+        !e.target.closest(".suggest-box") &&
+        !e.target.closest(".search-input")
+      ) {
         setSuggestionsVisible(false);
       }
     };
