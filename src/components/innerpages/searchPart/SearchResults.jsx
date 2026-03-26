@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import { YOUTUBE_SEARCH_API } from "../../../utils/constants";
 import SearchVideoCard from "./SearchVideoCard";
 

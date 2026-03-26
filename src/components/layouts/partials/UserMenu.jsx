@@ -1,5 +1,6 @@
 import { ArrowRightStartOnRectangleIcon, Cog6ToothIcon, UserIcon } from '@heroicons/react/24/outline';
 import { createPortal } from 'react-dom';
+import React from 'react';
 
 const ICONS= {
   UserIcon,

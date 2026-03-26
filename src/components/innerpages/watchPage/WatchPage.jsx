@@ -12,7 +12,7 @@ const WatchPage = () => {
 
   useEffect(() => {
     dispatch(toggleSidebar());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col w-full">

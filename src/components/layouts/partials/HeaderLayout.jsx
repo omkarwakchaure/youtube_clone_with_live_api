@@ -1,6 +1,7 @@
 import { Bars3Icon, BellIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import { useEffect, useRef, useState } from 'react';
 import UserMenu from './UserMenu';
+import React from 'react';
 
 const HeaderLayout = ({ user, userMenuConfig, headerConfig, isAuthenticated = true, onToggleMenu , children}) => {
   const [showNotifications, setShowNotifications] = useState(false);

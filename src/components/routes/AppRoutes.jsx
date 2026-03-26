@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import MainContainer from "../MainContainer";
 import WatchPage from "../innerpages/watchPage/WatchPage";
 import SearchResults from "../innerpages/searchPart/SearchResults";
+import React from "react";
 
 const router = createBrowserRouter([
   {

@@ -15,6 +15,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import {  useState } from 'react';
+import React from 'react';
 
 const ICON_MAP = {
   HomeIcon,

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { YOUTUBE_SUGGESTION_API } from '../../../utils/constants';
 import { cacheResults } from '../../../store/slices/searchSlice';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("");
