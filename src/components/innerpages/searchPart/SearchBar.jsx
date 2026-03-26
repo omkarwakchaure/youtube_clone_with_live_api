@@ -1,15 +1,11 @@
-import { Bars3Icon } from "@heroicons/react/16/solid";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../../store/appSlice";
-import { useState } from "react";
-import { useEffect } from "react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { cacheResults } from "../../store/searchSlice";
-import { useNavigate } from "react-router";
-import { YOUTUBE_SUGGESTION_API } from "../../utils/constants";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { YOUTUBE_SUGGESTION_API } from '../../../utils/constants';
+import { cacheResults } from '../../../store/slices/searchSlice';
 
-const Head = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+const SearchBar = () => {
+    const [searchQuery, setSearchQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [suggestionsVisible, setSuggestionsVisible] = useState(false);
@@ -52,10 +48,6 @@ const Head = () => {
     dispatch(cacheResults({ [searchQuery]: suggestionsArray }));
   };
 
-  const toggleMenuHandler = () => {
-    dispatch(toggleMenu());
-  };
-
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
 
@@ -74,22 +66,8 @@ const Head = () => {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
-
   return (
-    <div className="grid grid-cols-12 px-4 py-2 shadow-lg">
-      <div className="col-span-2 flex items-center gap-3">
-        <Bars3Icon
-          className="h-8 w-8 cursor-pointer"
-          onClick={() => toggleMenuHandler()}
-        />
-        <img
-          className="h-8"
-          alt="youtube-logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/2560px-Logo_of_YouTube_%282015-2017%29.svg.png"
-        />
-      </div>
-      <div className="col-span-8 flex items-center justify-center">
-        <div className=" flex relative w-1/2">
+    <div className='flex relative w-full max-w-xl'>
           {/* Left Icon (only when focused) */}
           {isFocused && (
             <MagnifyingGlassIcon className="h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
@@ -139,17 +117,9 @@ const Head = () => {
               </ul>
             </div>
           )}
-        </div>
-      </div>
-      <div className="col-span-2 flex justify-end">
-        <img
-          className="h-8 rounded-full"
-          src="https://img.freepik.com/premium-vector/user-icon-vector_1272330-86.jpg"
-          alt="user_logo"
-        />
-      </div>
+        
     </div>
-  );
-};
+  )
+}
 
-export default Head;
+export default SearchBar

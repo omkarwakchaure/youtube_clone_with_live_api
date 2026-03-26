@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ChatMessage from "./ChatMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from "../../../../store/chatSlice";
+import { addMessage } from "../../../../store/slices/chatSlice";
 import {
   generateRandomMessage,
   generateRandomName,

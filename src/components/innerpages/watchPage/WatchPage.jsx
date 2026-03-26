@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { closeMenu } from "../../../store/appSlice";
 import { useSearchParams } from "react-router";
 import CommentsContainer from "../comment/CommentsContainer";
 import LiveChat from "./chatPage/LiveChat";
+import { toggleSidebar } from "../../../store/slices/sidebarSlice";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -11,7 +11,7 @@ const WatchPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(closeMenu());
+    dispatch(toggleSidebar());
   }, []);
 
   return (
